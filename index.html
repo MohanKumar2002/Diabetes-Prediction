@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Diabetes Prediction</h1>
+        <form action="/predict" method="post">
+            <div class="form-group">
+                <label for="pregnancies">Number of times pregnant:</label>
+                <input type="text" class="form-control" name="pregnancies" required>
+            </div>
+            <div class="form-group">
+                <label for="glucose">Plasma glucose concentration:</label>
+                <input type="text" class="form-control" name="glucose" required>
+            </div>
+            <div class="form-group">
+                <label for="blood_pressure">Diastolic blood pressure (mm Hg):</label>
+                <input type="text" class="form-control" name="blood_pressure" required>
+            </div>
+            <div class="form-group">
+                <label for="skin_thickness">Triceps skin fold thickness (mm):</label>
+                <input type="text" class="form-control" name="skin_thickness" required>
+            </div>
+            <div class="form-group">
+                <label for="insulin">2-Hour serum insulin (mu U/ml):</label>
+                <input type="text" class="form-control" name="insulin" required>
+            </div>
+            <div class="form-group">
+                <label for="bmi">Body mass index:</label>
+                <input type="text" class="form-control" name="bmi" required>
+            </div>
+            <div class="form-group">
+                <label for="diabetes_pedigree">Diabetes pedigree function:</label>
+                <input type="text" class="form-control" name="diabetes_pedigree" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age (years):</label>
+                <input type="text" class="form-control" name="age" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Predict</button>
+        </form>
+
+        {% if prediction is not none %}
+            <h2 class="mt-4">Prediction: {{ 'Diabetic' if prediction == 1 else 'Not Diabetic' }}</h2>
+        {% endif %}
+    </div>
+</body>
+</html>
